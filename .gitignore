@@ -1,0 +1,4 @@
+**/node_modules
+**/app/lib/**/**/node_modules
+**/*.sqlite
+**/*.lock

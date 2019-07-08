@@ -1,0 +1,53 @@
+{
+  "name": "oauth2-server-sso",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "precommit": "scripts/pre-commit.sh",
+    "debug": "NODE_PATH=. DEBUG=* nodemon",
+    "pm2": "NODE_PATH=. node pm2",
+    "eslint": "eslint .",
+    "eslint:check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "eslint:fix": "eslint --fix .",
+    "prettier": "prettier --write \"{,!(node_modules)/**/}*.js\"",
+    "test": "NODE_ENV=test mocha --require @babel/register --recursive 'app/**/**/*.test.js'",
+    "server": "babel-node index.js",
+    "dev": "NODE_ENV=development npm run server | bunyan -o short"
+  },
+  "pre-commit": [
+    "eslint:fix",
+    "prettier",
+    "precommit"
+  ],
+  "dependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/node": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/register": "^7.4.4",
+    "bcrypt": "^3.0.6",
+    "bunyan": "^1.8.12",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "hashids": "^1.2.2",
+    "helmet": "^3.18.0",
+    "lodash": "^4.17.11",
+    "mysql2": "^1.6.5",
+    "oauth2-server": "^3.0.1",
+    "pm2": "^3.5.1",
+    "sequelize": "^5.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
+    "eslint": "^5.2.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "1.14.3",
+    "sqlite3": "^4.0.9"
+  }
+}
