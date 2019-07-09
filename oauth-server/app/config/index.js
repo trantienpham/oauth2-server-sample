@@ -1,7 +1,11 @@
 /*eslint no-process-env: "off"*/
 
 require("dotenv").config({
-  path: `.env${process.env.NODE_ENV !== 'production' && process.env.NODE_ENV ? ("." + process.env.NODE_ENV) : ""}`
+  path: `.env${
+    process.env.NODE_ENV !== "production" && process.env.NODE_ENV
+      ? "." + process.env.NODE_ENV
+      : ""
+  }`
 });
 export default {
   nodeEnv: process.env.NODE_ENV,

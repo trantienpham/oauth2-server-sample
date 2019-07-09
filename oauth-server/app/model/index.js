@@ -151,7 +151,7 @@ function initDbConnectionAndModels(config) {
     .sync(config.database.options.sync)
     .then(() => createDefaultUsersIfNotExist(model))
     .then(([admin, user]) => createDefaultClientsIfNotExist(model, admin, user))
-    .then(() => ({dbConnection, model}));
+    .then(() => ({ dbConnection, model }));
 }
 
 export { createDbConnection, createModels, initDbConnectionAndModels };
