@@ -2,3 +2,6 @@
 **/app/lib/**/**/node_modules
 **/*.sqlite
 **/*.lock
+**/*.log
+**/.nyc_output
+**/build

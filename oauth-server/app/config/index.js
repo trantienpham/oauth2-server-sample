@@ -1,15 +1,17 @@
 /*eslint no-process-env: "off"*/
 
-require('dotenv').config({path: `.env${process.env.NODE_ENV?('.'+process.env.NODE_ENV):''}`});
+require("dotenv").config({
+  path: `.env${process.env.NODE_ENV ? ("." + process.env.NODE_ENV) : ""}`
+});
 
 export default {
   nodeEnv: process.env.NODE_ENV,
   port: process.env.PORT,
-  
+
   hashIdsSalt: process.env.HASHIDS_SALT,
   hashIdsLength: process.env.HASHIDS_LENGTH,
   salt: process.env.SALT,
-  
+
   database: {
     name: process.env.DATABASE_NAME,
     username: process.env.DATABASE_USERNAME,
@@ -23,7 +25,7 @@ export default {
         acquire: process.env.DATABASE_POOL_ACQUIRE,
         idle: process.env.DATABASE_POOL_IDLE
       },
-      sync: {force: 'true' === process.env.DATABASE_SYNC ? true : false}
+      sync: { force: "true" === process.env.DATABASE_SYNC ? true : false }
     }
   },
 

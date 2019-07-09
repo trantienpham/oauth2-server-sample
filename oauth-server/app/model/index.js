@@ -1,13 +1,12 @@
-
-import bcrypt from 'bcrypt';
-import Sequelize from 'sequelize';
-import {split, isNil, join} from 'lodash';
-import createOAuthClientModel from './oauth_clients';
-import createOAuthUserModel from './oauth_users';
-import createOAuthTokenModel from './oauth_tokens';
-import createOAuthAuthorizationCodeModel from './oauth_authorization_codes';
-import createDefaultClientsIfNotExist from './seeds/create_client';
-import createDefaultUsersIfNotExist from './seeds/create_user';
+import bcrypt from "bcrypt";
+import Sequelize from "sequelize";
+import { split, isNil, join } from "lodash";
+import createOAuthClientModel from "./oauth_clients";
+import createOAuthUserModel from "./oauth_users";
+import createOAuthTokenModel from "./oauth_tokens";
+import createOAuthAuthorizationCodeModel from "./oauth_authorization_codes";
+import createDefaultClientsIfNotExist from "./seeds/create_client";
+import createDefaultUsersIfNotExist from "./seeds/create_user";
 
 // create database
 function createDbConnection(config) {
@@ -23,12 +22,15 @@ function createModels(dbConnection, salt) {
   const Clients = createOAuthClientModel(dbConnection, Sequelize);
   const Users = createOAuthUserModel(dbConnection, Sequelize);
   const Tokens = createOAuthTokenModel(dbConnection, Sequelize);
-  const AuthorizationCodes = createOAuthAuthorizationCodeModel(dbConnection, Sequelize);
+  const AuthorizationCodes = createOAuthAuthorizationCodeModel(
+    dbConnection,
+    Sequelize
+  );
   const model = {
     // used by the authorization code grant and the password grant.
     getAccessToken(accessToken) {
-      return Tokens.findOne({ where: { accessToken } }).then(token=> {
-        if ((!isNil(token))) {
+      return Tokens.findOne({ where: { accessToken } }).then(token => {
+        if (!isNil(token)) {
           return {
             ...token.toJSON(),
             client: { id: token.clientId },
@@ -38,15 +40,16 @@ function createModels(dbConnection, salt) {
       });
     },
     getClient(clientId, clientSecret) {
-      const where = isNil(clientSecret) ? {clientId} : {clientId, clientSecret};
-      return Clients.findOne({ where })
-      .then(client => {
-        if (!isNil(client)){
+      const where = isNil(clientSecret)
+        ? { clientId }
+        : { clientId, clientSecret };
+      return Clients.findOne({ where }).then(client => {
+        if (!isNil(client)) {
           return {
             ...client.toJSON(),
             id: client.clientId, // this property is used for the authorization_code grant type
-            redirectUris: split(client.redirectUris, ','),
-            grants: split(client.grants, ',')
+            redirectUris: split(client.redirectUris, ","),
+            grants: split(client.grants, ",")
           };
         }
         return client;
@@ -62,8 +65,8 @@ function createModels(dbConnection, salt) {
         refreshToken: token.refreshToken,
         refreshTokenExpiresAt: token.refreshTokenExpiresAt
       }).then(() => ({
-        client: {id: client.clientId},
-        user: {id:user.id},
+        client: { id: client.clientId },
+        user: { id: user.id },
         accessToken: token.accessToken,
         accessTokenExpiresAt: token.accessTokenExpiresAt,
         refreshToken: token.refreshToken,
@@ -73,17 +76,19 @@ function createModels(dbConnection, salt) {
 
     // the authorization code grant
     getAuthorizationCode(authorizationCode) {
-      return AuthorizationCodes.findOne({ where: { authorizationCode } }).then(code => {
-        if (!isNil(code)) {
-          return {
-            ...code.toJSON(),
-            client: {id: code.clientId},
-            user: {id: code.userId},
-            expiresAt: new Date(code.expiresAt)
-          };
+      return AuthorizationCodes.findOne({ where: { authorizationCode } }).then(
+        code => {
+          if (!isNil(code)) {
+            return {
+              ...code.toJSON(),
+              client: { id: code.clientId },
+              user: { id: code.userId },
+              expiresAt: new Date(code.expiresAt)
+            };
+          }
+          return code;
         }
-        return code;
-      });
+      );
     },
     saveAuthorizationCode(code, client, user) {
       return AuthorizationCodes.create({
@@ -94,19 +99,20 @@ function createModels(dbConnection, salt) {
         redirectUri: code.redirectUri
       });
     },
-    revokeAuthorizationCode({authorizationCode}) {
-      return AuthorizationCodes.destroy({ where: { authorizationCode } }).then(removed => !!removed);
+    revokeAuthorizationCode({ authorizationCode }) {
+      return AuthorizationCodes.destroy({ where: { authorizationCode } }).then(
+        removed => !!removed
+      );
     },
 
     // the password grant
     getUser(username, password) {
-      const where = {username};
+      const where = { username };
       if (!isNil(password)) {
         where.password = bcrypt.hashSync(password, salt);
       }
-      return Users.findOne({ where })
-      .then(user => {
-        if (!isNil(user)){
+      return Users.findOne({ where }).then(user => {
+        if (!isNil(user)) {
           return {
             id: user.id,
             userId: user.id,
@@ -119,13 +125,13 @@ function createModels(dbConnection, salt) {
 
     // the client credentials grant type
     getUserFromClient(client) {
-      return Users.findOne({ where: { id: client.userId }});
+      return Users.findOne({ where: { id: client.userId } });
     },
 
     // export additional methods to create Client and User
     createClient(client) {
-      client.redirectUris = join(client.redirectUris, ',');
-      client.grants = join(client.grants, ',');
+      client.redirectUris = join(client.redirectUris, ",");
+      client.grants = join(client.grants, ",");
       return Clients.create(client);
     },
     createUser(user) {
@@ -138,17 +144,14 @@ function createModels(dbConnection, salt) {
   return model;
 }
 
-function initDbConnectionAndModels(config, logger) {
+function initDbConnectionAndModels(config) {
   const dbConnection = createDbConnection(config);
   const model = createModels(dbConnection, config.salt);
-  return dbConnection.sync(config.database.options.sync)
-  .then(() => createDefaultUsersIfNotExist(model))
-  .then(([admin, user]) => createDefaultClientsIfNotExist(model, admin, user)
-  .then(()=>({dbConnection, model})));
+  return dbConnection
+    .sync(config.database.options.sync)
+    .then(() => createDefaultUsersIfNotExist(model))
+    .then(([admin, user]) => createDefaultClientsIfNotExist(model, admin, user))
+    .then(() => ({dbConnection, model}));
 }
 
-export {
-  createDbConnection,
-  createModels,
-  initDbConnectionAndModels
-}
+export { createDbConnection, createModels, initDbConnectionAndModels };

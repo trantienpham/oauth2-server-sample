@@ -1,6 +1,6 @@
 export default function createOAuthAuthorizationCodeModel(dbConnection, type) {
   return dbConnection.define(
-    'oauth_authorization_codes',
+    "oauth_authorization_codes",
     {
       id: {
         type: type.UUID,
@@ -11,28 +11,28 @@ export default function createOAuthAuthorizationCodeModel(dbConnection, type) {
       clientId: {
         type: type.UUID,
         allowNull: false,
-        field: 'client_id'
+        field: "client_id"
       },
       userId: {
         type: type.UUID,
         allowNull: false,
-        field: 'user_id'
+        field: "user_id"
       },
       authorizationCode: {
         type: type.STRING(100),
         unique: true,
         allowNull: false,
-        field: 'authorization_code'
+        field: "authorization_code"
       },
       expiresAt: {
         type: type.DATE,
         allowNull: false,
-        field: 'expires_at'
+        field: "expires_at"
       },
       redirectUri: {
         type: type.TEXT,
         allowNull: false,
-        field: 'redirect_uri'
+        field: "redirect_uri"
       }
     },
     {
@@ -40,7 +40,7 @@ export default function createOAuthAuthorizationCodeModel(dbConnection, type) {
       indexes: [
         {
           unique: true,
-          fields: ['authorization_code']
+          fields: ["authorization_code"]
         }
       ]
     }

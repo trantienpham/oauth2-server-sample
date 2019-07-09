@@ -1,12 +1,12 @@
 export default function createOAuthUserModel(dbConnection, type) {
   return dbConnection.define(
-    'oauth_users',
+    "oauth_users",
     {
       id: {
         type: type.UUID,
         primaryKey: true,
         allowNull: false,
-        defaultValue: type.UUIDV4(),
+        defaultValue: type.UUIDV4()
       },
       username: {
         type: type.STRING(128),
