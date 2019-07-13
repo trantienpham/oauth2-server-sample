@@ -1,7 +1,7 @@
-import config from "./app/config";
-import { initDbConnectionAndModels } from "./app/model";
-import createApp from "./app";
-import createLogger from "./app/lib/logger";
+import config from "config";
+import { initDbConnectionAndModels } from "model";
+import createApp from "app";
+import createLogger from "lib/logger";
 
 const logger = createLogger(config);
 const handleExit = (dbConnection, logger) =>

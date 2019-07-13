@@ -3,22 +3,22 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "precommit": "scripts/pre-commit.sh",
     "eslint": "eslint .",
     "eslint:check": "eslint --print-config .eslintrc.js",
     "eslint:fix": "eslint --fix .",
-    "prettier": "prettier --write \"{app/,!(node_modules)/**/}*.js\"",
+    "prettier": "prettier --loglevel silent --write \"{app/,!(node_modules)/**/}*.js\"",
     "coverage": "NODE_ENV=test nyc check-coverage --lines 80 --reporter=text",
     "test": "NODE_ENV=test nyc --check-coverage --lines 80 --reporter=text mocha --timeout 3000 --require @babel/register --recursive 'app/**/**/*.test.js'",
     "server": "babel-node index.js",
     "dev": "NODE_ENV=development npm run server | bunyan -o short",
     "build": "rm -rf build && webpack --mode production --config webpack.config.js"
   },
-  "pre-commit": [
-    "eslint:fix",
-    "prettier",
-    "precommit"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier && npm run eslint",
+      "pre-push": "npm test"
+    }
+  },
   "dependencies": {
     "bcrypt": "^3.0.6",
     "bunyan": "^1.8.12",
@@ -44,9 +44,9 @@
     "chai-http": "^4.3.0",
     "copy-pkg-json-webpack-plugin": "^0.0.38",
     "eslint": "^5.2.0",
+    "husky": "^3.0.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "pre-commit": "^1.2.2",
     "prettier": "1.14.3",
     "sqlite3": "^4.0.9",
     "webpack": "^4.35.3",

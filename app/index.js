@@ -1,6 +1,6 @@
 import express from "express";
 import helmet from "helmet";
-import createOAuthServer from "./lib/oauth2-server";
+import createOAuthServer from "lib/oauth2-server";
 
 const loginForm = (client_id, redirect_uri, response_type, state) =>
   `

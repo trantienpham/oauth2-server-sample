@@ -35,5 +35,14 @@ module.exports = {
       remove: ['devDependencies', 'pre-commit', 'scripts'],
       replace: {scripts: {start: 'node app.js'}}
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      app: path.resolve(__dirname, './app/'),
+      lib: path.resolve(__dirname, './app/lib/'),
+      config: path.resolve(__dirname, './app/config/'),
+      model: path.resolve(__dirname, './app/model/'),
+    }
+  }
 }
