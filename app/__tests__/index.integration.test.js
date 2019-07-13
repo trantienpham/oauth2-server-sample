@@ -154,7 +154,7 @@ describe("app without real database", function() {
           res.should.have.status(302);
           res.should.have.header(
             "location",
-            "/login?client_id=1234&redirect_uri=http://example.com/callback&response_type=code&state=foobar1"
+            "/login?client_id=1234&redirect_uri=http://example.com/callback&response_type=code&state=foobar"
           );
         })
         .finally(() => {
