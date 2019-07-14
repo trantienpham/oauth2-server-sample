@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "12"
+  - "stable"
 env:
   - NODE_ENV=production
 before_install:
@@ -8,5 +8,8 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 install:
   - yarn install
+cache:
+  directories:
+    - "node_modules"
 script:
-    - npm test
+  - yarn test
