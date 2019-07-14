@@ -29,7 +29,7 @@ describe("app without real database", function() {
       const { app, server } = createApp(config, logger, model);
       const requester = chai.request(app).keepOpen();
       requester
-        .post("/token")
+        .post("/api/v1/token")
         .set("content-type", "application/x-www-form-urlencoded")
         .send({
           client_id: 1234,
@@ -85,7 +85,7 @@ describe("app without real database", function() {
       const { app, server } = createApp(config, logger, model);
       const requester = chai.request(app).keepOpen();
       requester
-        .post("/token")
+        .post("/api/v1/token")
         .set("content-type", "application/x-www-form-urlencoded")
         .send({
           client_id: 1234,
@@ -139,7 +139,7 @@ describe("app without real database", function() {
       const { app, server } = createApp(config, logger, model);
       const requester = chai.request(app).keepOpen();
       requester
-        .get("/authorize")
+        .get("/api/v1/authorize")
         .set("content-type", "application/json")
         .query({
           client_id: 1234,

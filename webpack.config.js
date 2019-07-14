@@ -32,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new CopyPkgJsonPlugin({
-      remove: ['devDependencies', 'pre-commit', 'scripts'],
+      remove: ['devDependencies', 'pre-commit', 'scripts', 'husky'],
       replace: {scripts: {start: 'node app.js'}}
     })
   ],

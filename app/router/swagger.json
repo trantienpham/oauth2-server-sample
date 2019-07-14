@@ -1,0 +1,37 @@
+{
+  "swagger":"2.0",
+  "info":{
+     "version":"1.0.0",
+     "title":"OAuth2 Server spec",
+     "description":"OAuth2 Server spec for Swagger",
+     "termsOfService":"http://swagger.io/terms/"
+  },
+  "basePath":"/api/v1",
+  "schemes":[
+    "http",
+    "https"
+  ],
+  "consumes":[
+    "application/json"
+  ],
+  "produces":[
+    "application/json"
+  ],
+  "paths":{
+    "/login":{
+      "get": {}
+    },
+    "/token": {
+      "post": {}
+    },
+    "/authorize": {
+      "get": {},
+      "post": {}
+    },
+    "/authenticate": {
+      "get": {}
+    }
+  },
+  "definitions": {
+  }
+}

@@ -1,14 +1,5 @@
-/*eslint no-process-env: "off"*/
-
-require("dotenv").config({
-  path: `.env${
-    process.env.NODE_ENV !== "production" && process.env.NODE_ENV
-      ? "." + process.env.NODE_ENV
-      : ""
-  }`
-});
+require("dotenv").config();
 export default {
-  nodeEnv: process.env.NODE_ENV,
   port: process.env.PORT,
 
   hashIdsSalt: process.env.HASHIDS_SALT,
