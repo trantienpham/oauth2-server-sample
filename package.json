@@ -8,7 +8,7 @@
     "eslint:fix": "eslint --fix .",
     "prettier": "prettier --loglevel silent --write \"{app/,!(node_modules)/**/}*.js\"",
     "coverage": "NODE_ENV=test nyc check-coverage --lines 80 --reporter=text",
-    "test": "NODE_ENV=test NODE_PATH=./app mocha --timeout 3000 --require @babel/register --recursive 'app/**/**/*.test.js'",
+    "test": "NODE_ENV=test NODE_PATH=./app ./node_modules/.bin/mocha --timeout 3000 --require @babel/register --recursive 'app/**/**/*.test.js'",
     "server": "babel-node index.js",
     "dev": "NODE_ENV=development npm run server | bunyan -o short",
     "build": "rm -rf build && webpack --mode production --config webpack.config.js"
