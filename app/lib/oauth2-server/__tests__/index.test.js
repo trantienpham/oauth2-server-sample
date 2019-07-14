@@ -1,5 +1,5 @@
 import OAuth2Server from "oauth2-server";
-import createOAuthServer from "../index";
+import createOAuthServer from "lib/oauth2-server";
 import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
 

@@ -1,12 +1,12 @@
 import bcrypt from "bcrypt";
 import Sequelize from "sequelize";
 import { split, isNil, join } from "lodash";
-import createOAuthClientModel from "./oauth_clients";
-import createOAuthUserModel from "./oauth_users";
-import createOAuthTokenModel from "./oauth_tokens";
-import createOAuthAuthorizationCodeModel from "./oauth_authorization_codes";
-import createDefaultClientsIfNotExist from "./seeds/create_client";
-import createDefaultUsersIfNotExist from "./seeds/create_user";
+import createOAuthClientModel from "model/oauth_clients";
+import createOAuthUserModel from "model/oauth_users";
+import createOAuthTokenModel from "model/oauth_tokens";
+import createOAuthAuthorizationCodeModel from "model/oauth_authorization_codes";
+import createDefaultClientsIfNotExist from "model/seeds/create_client";
+import createDefaultUsersIfNotExist from "model/seeds/create_user";
 
 // create database
 function createDbConnection(config) {

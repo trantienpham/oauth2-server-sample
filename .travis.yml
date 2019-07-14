@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "stable"
+env:
+  - DATABASE_TYPE=sqlite
+  - DATABASE_HOST=test.sqlite
+  - LOG_NAME=oauth2-server-logger-test-1.0.0
 install:
   - npm install
 cache:

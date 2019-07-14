@@ -1,5 +1,5 @@
-import config from "../config";
-import GRANT_TYPES from "./grant_type";
+import config from "config";
+import GRANT_TYPES from "model/grant_type";
 import Hashids from "hashids";
 
 const hashids = new Hashids(config.hashIdsSalt, config.hashIdsLength);

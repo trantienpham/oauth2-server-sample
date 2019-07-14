@@ -1,8 +1,8 @@
 import { merge } from "lodash";
 import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
-import config from "../../config";
-import createLogger from "../../lib/logger";
+import config from "config";
+import createLogger from "lib/logger";
 
 chai.use(chaiAsPromised);
 const should = chai.should();
