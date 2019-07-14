@@ -1,14 +1,21 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 env:
-  - DATABASE_TYPE=sqlite
-  - DATABASE_HOST=test.sqlite
-  - LOG_NAME=oauth2-server-logger-test-1.0.0
+- DATABASE_TYPE=sqlite
+- DATABASE_HOST=test.sqlite
+- LOG_NAME=oauth2-server-logger-test-1.0.0
 install:
-  - npm install
+- npm install
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 script:
-  - npm test
+- npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: UadC0HmUPGlsiEWHGJZuC7VKvOXb5Uj2uqVDLC0/VhCAC9ETp580boc1HwucGrsvD1EhDEhZ3eZevBQTnLlGQBuCKznCx3/JBQpRudWJIMMGtbusHPIW6ZRjGiaV2/bsTCHLbkVEWQGWiigLe0s4HOmLw9PCFZQWnORXyOpJmhcXbwXhaYvOJukxdcmK13yRNIvsZLn+mnIEGtBRvNRTen0btfAGf1kD5NscF1mv04iPhiBoIG97M5Va22svYnOq4EgtKz/UwuilPI04rOxtKcvtLzdDj18huZXhsYboopdRG2R2DiCBRSz33ODOcLsX9aEoSaVCbo0JWK4YEQa6J3sX/p3yDWzTGNKIBjjBS0wB3IsnmkCmRFR96kJj4/cAr88ofdRUHke1pcuY3a8XrGzRjuK/nASnoeuRV6x/MnBlUSQ5HBbTaS9GJkQC672Q74R4QXey3q72JPHN9vvrZydtbt7R2rXy50oLjZ3+vwpghBNbCH4HgBMP/XYPu908qG6v1+3mEK/4BqFxaiBt1reBj3WQAWIVmDMcJ6ZtR3E/XfFJsa66BQNlzEuQX0hs+IaywIto/5O0RvEdMszhlrDRy3aav9MhlFVbjwqwPDasKpMjqRZaiiDiMsETxEh56YJe9pFe9RkJAtjehfQfeHAQv67QRym8P1Ei1LKMI4U=
+  app: oauth2-server-sample
+  on:
+    repo: trantienpham/oauth2-server-sample
