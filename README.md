@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/trantienpham/oauth2-server-sample.svg?branch=master)](https://travis-ci.org/trantienpham/oauth2-server-sample)
+
 # Run service with your own environment
 
 ## production

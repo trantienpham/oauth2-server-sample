@@ -8,8 +8,8 @@
     "eslint:fix": "eslint --fix .",
     "prettier": "prettier --loglevel silent --write \"{app/,!(node_modules)/**/}*.js\"",
     "coverage": "NODE_ENV=test nyc check-coverage --lines 80 --reporter=text",
-    "test": "NODE_ENV=test NODE_PATH=./app ./node_modules/nyc/bin/nyc.js --check-coverage --lines 80 --reporter=text ./node_modules/mocha/bin/mocha --timeout 3000 --require @babel/register --recursive 'app/**/**/*.test.js'",
     "server": "babel-node index.js",
+    "test": "NODE_ENV=test NODE_PATH=./app ./node_modules/nyc/bin/nyc.js --check-coverage --lines 80 --reporter=text ./node_modules/mocha/bin/mocha --timeout 3000 --require @babel/register --recursive 'app/**/**/*.test.js'",
     "dev": "NODE_ENV=development npm run server | bunyan -o short",
     "build": "rm -rf build && webpack --mode production --config webpack.config.js"
   },
