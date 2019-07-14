@@ -3,7 +3,7 @@ export default {
   port: process.env.PORT,
 
   hashIdsSalt: process.env.HASHIDS_SALT,
-  hashIdsLength: process.env.HASHIDS_LENGTH,
+  hashIdsLength: parseInt(process.env.HASHIDS_LENGTH),
   salt: process.env.SALT,
 
   database: {

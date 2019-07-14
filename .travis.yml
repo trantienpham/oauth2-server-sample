@@ -2,7 +2,16 @@ language: node_js
 node_js:
 - stable
 env:
-- DATABASE_TYPE=sqlite DATABASE_HOST=test.sqlite LOG_NAME=oauth2-server-logger-test-1.0.0 DATABASE_POOL_MAX=5 DATABASE_POOL_MIN=0 DATABASE_POOL_ACQUIRE=300000 DATABASE_POOL_IDLE=100000 HASHIDS_SALT=oauth2-server-salt HASHIDS_LENGTH=32 SALT=$2b$12$65E6uaPdXdZhEzijgdfQyemCj9inE4ceO4NiCP3DV2fuT0E6lAm0q
+- DATABASE_TYPE=sqlite
+  DATABASE_HOST=test.sqlite
+  LOG_NAME=oauth2-server-logger-test-1.0.0
+  DATABASE_POOL_MAX=5
+  DATABASE_POOL_MIN=0
+  DATABASE_POOL_ACQUIRE=300000
+  DATABASE_POOL_IDLE=100000
+  HASHIDS_SALT=oauth2-server-salt
+  HASHIDS_LENGTH=32
+  SALT=$2b$12$65E6uaPdXdZhEzijgdfQyemCj9inE4ceO4NiCP3DV2fuT0E6lAm0q
 install:
 - npm install
 cache:
