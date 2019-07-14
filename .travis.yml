@@ -4,9 +4,9 @@ node_js:
 env:
   - NODE_ENV=production
 install:
-  - install install
+  - npm install
 cache:
   directories:
     - "node_modules"
 script:
-  - install test
+  - npm test
