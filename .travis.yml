@@ -2,17 +2,10 @@ language: node_js
 node_js:
 - stable
 env:
-- DATABASE_TYPE=sqlite
-  DATABASE_HOST=test.sqlite
-  DATABASE_POOL_MAX=5
-  DATABASE_POOL_MIN=0
-  DATABASE_POOL_ACQUIRE=300000
-  DATABASE_POOL_IDLE=100000
-  HASHIDS_SALT=oauth2-server-salt
-  HASHIDS_LENGTH=32
-  SALT=\$2b\$12\$65E6uaPdXdZhEzijgdfQyemCj9inE4ceO4NiCP3DV2fuT0E6lAm0q
-  LOG_NAME=oauth2-server-logger-test-1.0.0
-  LOG_LEVEL=info
+- DATABASE_TYPE=sqlite DATABASE_HOST=test.sqlite DATABASE_POOL_MAX=5 DATABASE_POOL_MIN=0
+  DATABASE_POOL_ACQUIRE=300000 DATABASE_POOL_IDLE=100000 HASHIDS_SALT=oauth2-server-salt
+  HASHIDS_LENGTH=32 SALT=\$2b\$12\$65E6uaPdXdZhEzijgdfQyemCj9inE4ceO4NiCP3DV2fuT0E6lAm0q
+  LOG_NAME=oauth2-server-logger-test-1.0.0 LOG_LEVEL=info
 install:
 - npm install
 cache:
@@ -27,3 +20,6 @@ deploy:
   app: oauth2-server-sample
   on:
     repo: trantienpham/oauth2-server-sample
+before_install:
+- openssl aes-256-cbc -K $encrypted_fef3b9a7130f_key -iv $encrypted_fef3b9a7130f_iv
+  -in .env.enc -out .env -d

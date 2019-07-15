@@ -1,6 +1,5 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const CopyPkgJsonPlugin = require("copy-pkg-json-webpack-plugin");
 
 module.exports = {
   target: "node",
@@ -30,12 +29,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CopyPkgJsonPlugin({
-      remove: ['devDependencies', 'pre-commit', 'scripts', 'husky'],
-      replace: {scripts: {start: 'node app.js'}}
-    })
-  ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {

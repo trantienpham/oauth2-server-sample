@@ -4,4 +4,4 @@
 **/*.log
 **/.nyc_output
 **/build
-.env*
+.env

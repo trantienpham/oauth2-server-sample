@@ -28,6 +28,8 @@
     "lodash": "^4.17.11",
     "mysql2": "^1.6.5",
     "oauth2-server": "^3.0.1",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.9.0",
     "swagger-ui-express": "^4.0.7"
   },
@@ -42,7 +44,6 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.3.0",
-    "copy-pkg-json-webpack-plugin": "^0.0.38",
     "eslint": "^5.2.0",
     "husky": "^3.0.0",
     "mocha": "^6.1.4",
