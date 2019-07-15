@@ -13,7 +13,7 @@ export default function createRouter(model) {
     <title>Login</title>
   </head>
   <body>
-    <form action="/authorize">
+    <form action="${baseApiUrl}/authorize">
       <div>
         <lable>Username:</label> &nbsp;
         <input type="text" name="username" value=""/>
