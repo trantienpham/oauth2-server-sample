@@ -2,6 +2,7 @@ import express from "express";
 import createOAuthServer from "lib/oauth2-server";
 
 export const swaggerDocument = require("./swagger.json");
+export const baseApiUrl = '/api/v1';
 
 export default function createRouter(model) {
   const router = express.Router();
@@ -51,7 +52,7 @@ export default function createRouter(model) {
       const { client_id, redirect_uri, response_type, state } =
         req.method === "POST" ? req.body : req.query;
       res.redirect(
-        `/login?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&state=${state}`
+        `${baseApiUrl}/login?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&state=${state}`
       );
       return;
     }
