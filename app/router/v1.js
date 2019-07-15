@@ -2,7 +2,7 @@ import express from "express";
 import createOAuthServer from "lib/oauth2-server";
 
 export const swaggerDocument = require("./swagger.json");
-export const baseApiUrl = '/api/v1';
+export const baseApiUrl = "/api/v1";
 
 export default function createRouter(model) {
   const router = express.Router();
